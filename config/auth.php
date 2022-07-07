@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'patient',
         'passwords' => 'patients',
     ],
     'admin'=>[
@@ -44,7 +44,7 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'patient' => [
             'driver' => 'session',
             'provider' => 'patients',
         ],

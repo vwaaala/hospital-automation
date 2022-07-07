@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if($guard ==='admin'){
                     return redirect()->route('admin.dashboard');
-                }elseif ($guard === 'web'){
+                }elseif ($guard === 'patient'){
                     return redirect()->route('patient.profile');
                 }
             }
