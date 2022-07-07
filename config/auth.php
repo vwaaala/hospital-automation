@@ -15,7 +15,11 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'patients',
+    ],
+    'admin'=>[
+        'driver'=>'eloquent',
+        'model'=>App\Models\Admin::class,
     ],
 
     /*
@@ -38,7 +42,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'patients',
+        ],
+        'admin'=>[
+            'driver'=>'session',
+            'provider'=>'admin'
         ],
     ],
 
@@ -60,15 +68,23 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Models\User::class,
+//        ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*
@@ -87,11 +103,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'patients' => [
+            'provider' => 'patients',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
     ],
 
