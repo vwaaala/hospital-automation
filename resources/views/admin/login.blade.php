@@ -21,23 +21,38 @@
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
                         <h3 class="card-title text-left mb-3">Login</h3>
-                        <form>
-                            <div class="form-group">
-                                <label>Username or email *</label>
-                                <input type="text" class="form-control p_input">
-                            </div>
-                            <div class="form-group">
-                                <label>Password *</label>
-                                <input type="text" class="form-control p_input">
-                            </div>
-                            <div class="form-group d-flex align-items-center justify-content-between">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                        <form method="post" action="{{route('admin.check')}}">
+                            @if(Session::get('fail'))
+                                <div class="alert alert-danger">
+                                    {{Session::get('fail')}}
                                 </div>
+                            @endif
+                            @csrf
+                            <div class="form-group">
+                                <label for="email">{{ __('Email Address') }}</label>
+                                <input id="email" type="email"
+                                       class="form-control p_input @error('email') is-invalid @enderror" name="email"
+                                       value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="password">{{ __('Password') }}</label>
+                                <input type="password"
+                                       class="form-control p_input @error('password') is-invalid @enderror"
+                                       name="password" id="password">
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Sign in</button>
                             </div>
                         </form>
                     </div>

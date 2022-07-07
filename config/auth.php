@@ -46,7 +46,7 @@ return [
         ],
         'admin'=>[
             'driver'=>'session',
-            'provider'=>'admin'
+            'provider'=>'admins'
         ],
     ],
 
@@ -68,15 +68,6 @@ return [
     */
 
     'providers' => [
-//        'users' => [
-//            'driver' => 'eloquent',
-//            'model' => App\Models\User::class,
-//        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
         'patients' => [
             'driver' => 'eloquent',
             'model' => App\Models\Patient::class,

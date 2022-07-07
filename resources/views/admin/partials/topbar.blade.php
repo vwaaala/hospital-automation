@@ -177,7 +177,8 @@
                             </div>
                         </div>
                         <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Log out</p>
+                            <p class="preview-subject mb-1" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log out</p>
+                            <form method="post" action="{{route('admin.logout')}}" id="logout-form">@csrf</form>
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>

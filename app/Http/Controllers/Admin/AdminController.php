@@ -3,89 +3,46 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Admin;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function index()
+    public function index(): Factory|View|Application
     {
-        //
         return view('admin.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return void
-     */
-    public function create()
+    public function login(): Factory|View|Application
     {
-        //
+        return view('admin.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function logout(Request $request): RedirectResponse
     {
-        //
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Admin $admin
-     * @return Response
-     */
-    public function show(Admin $admin)
+    public function check(Request $request): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Admin $admin
-     * @return void
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Admin $admin
-     * @return void
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Admin $admin
-     * @return void
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        // validate form data
+        $request->validate([
+            'email' => 'required|email|exists:admins,email',
+            'password' => 'required|min:6|max:12'
+        ], [
+            'email.exists' => 'This email is not associated with any admin account'
+        ]);
+        $credentials = $request->only('email','password');
+        if(Auth::guard('admin')->attempt($credentials)){
+            return redirect()->route('admin.dashboard');
+        }else{
+            return redirect()->back()->with('fail','Incorrect credentials');
+        }
     }
 }
