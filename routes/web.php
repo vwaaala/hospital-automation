@@ -31,7 +31,7 @@ Route::prefix('patient')->name('patient.')->group(function(){
         Route::post('/create', [PatientController::class,'store'])->name('store');
         Route::post('/check', [PatientController::class,'check'])->name('check');
     });
-    Route::middleware(['auth:patient','prevent-back-history'])->group(function(){
+    Route::middleware(['auth:patient','PreventBackHistory'])->group(function(){
 
         Route::get('/profile', [PatientController::class, 'profile'])->name('profile');
     });

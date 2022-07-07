@@ -41,7 +41,7 @@ class PatientController extends Controller
             'email.exists' => 'This email is not associated with any Patient account'
         ]);
         $credentials = $request->only('email','password');
-        if(Auth::guard('web')->attempt($credentials)){
+        if(Auth::guard('patient')->attempt($credentials)){
             return redirect()->route('patient.profile');
         }else{
             return redirect()->back()->with('fail','Incorrect credentials');

@@ -6,5 +6,5 @@
             {{Session::get('success')}}
         </div>
     @endif
-    <p>{{Auth::guard('web')->user()->name}}</p>
+    <p>{{Auth::guard('patient')->user()->name}}</p>
 @endsection
