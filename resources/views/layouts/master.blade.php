@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin') }}</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     @yield('style')
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" />
@@ -28,12 +28,12 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
-<script src="{{ asset('assets/js/off-canvas.js')}}"></script>
-<script src="{{ asset('assets/js/hoverable-collapse.js')}}"></script>
-<script src="{{ asset('assets/js/misc.js')}}"></script>
-<script src="{{ asset('assets/js/settings.js')}}"></script>
-<script src="{{ asset('assets/js/todolist.js')}}"></script>
+<script src="{{ asset('js/vendor.bundle.base.js')}}"></script>
+<!-- <script src="{{ asset('js/off-canvas.js')}}"></script> -->
+<!-- <script src="{{ asset('js/hoverable-collapse.js')}}"></script> -->
+<!-- <script src="{{ asset('js/misc.js')}}"></script> -->
+<!-- <script src="{{ asset('js/settings.js')}}"></script> -->
+<!-- <script src="{{ asset('js/todolist.js')}}"></script> -->
 @yield('script')
 </body>
 </html>

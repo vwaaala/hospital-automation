@@ -43,7 +43,10 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {!! $doctors->links() !!}
+                        
+                    </div>
+                    <div class="card-footer">
+                    {{ $doctors->links() }}
                     </div>
                 </div>
             </div>
