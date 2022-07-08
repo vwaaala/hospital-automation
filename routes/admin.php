@@ -15,7 +15,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::prefix('doctor')->name('doctor.')->group(function (){
             Route::get('/index', [DoctorController::class, 'index'])->name('index');
-            Route::view('/create', 'admin.doctors.create')->name('create');
+            Route::get('/create', [DoctorController::class, 'create'])->name('create');
+            Route::post('/store', [DoctorController::class, 'store'])->name('store');
         });
         Route::view('/patient/index', 'admin.patients.index')->name('patient.index');
         Route::view('/patient/create', 'admin.patients.create')->name('patient.create');

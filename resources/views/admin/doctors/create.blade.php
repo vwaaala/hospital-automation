@@ -13,27 +13,62 @@
 <div class="col-12 grid-margin">
     <div class="card">
         <div class="card-body">
-            <form class="form-sample">
+            <form class="form-sample" method="post" action="{{route('admin.doctor.store')}}">
+                @csrf
                 <p class="card-description"> Personal info </p>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
+                            <label for="name" class="col-sm-3 col-form-label">{{ __('Full Name')}}</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="name" id="name"/>
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
+                            <label for="email" class="col-sm-3 col-form-label">{{ __('Email')}}</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" id="email" />
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                 </div>
+                <p class="card-description"> Security info </p>
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-3 col-form-label">{{ __('Password')}}</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password" id="password"/>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="password_confirmation" class="col-sm-3 col-form-label">{{ __('Confirm password')}}</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Gender</label>
@@ -145,15 +180,23 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-6">
+                    <button type="submit" class="btn btn-inverse-success btn-icon-text">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i> Create </button>
+                    <button type="button" class="btn btn-inverse-warning btn-icon-text">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i> Create and add another</button>
+                    </div>
                 </div>
             </form>
         </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-inverse-success btn-icon-text">
+        <!-- <div class="card-footer">
+            <button type="submit" class="btn btn-inverse-success btn-icon-text">
                 <i class="mdi mdi-file-check btn-icon-prepend"></i> Create </button>
             <button type="button" class="btn btn-inverse-warning btn-icon-text">
                 <i class="mdi mdi-file-check btn-icon-prepend"></i> Create and add another</button>
-        </div>
+        </div> -->
     </div>
 </div>
 </div>

@@ -21,6 +21,11 @@
         @include('admin.partials.topbar')
         <div class="main-panel">
             <div class="content-wrapper">
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 @yield('content')
             </div>
             @include('layouts.partials.footer')
