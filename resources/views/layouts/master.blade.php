@@ -20,12 +20,8 @@
     <div class="container-fluid page-body-wrapper">
         @include('admin.partials.topbar')
         <div class="main-panel">
+            @include('layouts.partials.session')
             <div class="content-wrapper">
-                @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
                 @yield('content')
             </div>
             @include('layouts.partials.footer')
