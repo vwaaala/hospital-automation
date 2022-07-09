@@ -46,7 +46,7 @@
                         
                     </div>
                     <div class="card-footer">
-                    {{ $doctors->links() }}
+                    {{ $doctors->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
             </div>

@@ -12,4 +12,5 @@ class DoctorHelper
     public function store($data){
         return Doctor::create($data);
     }
+    
 }

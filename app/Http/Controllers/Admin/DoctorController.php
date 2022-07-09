@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Services\DoctorService;
 use Illuminate\Contracts\Foundation\Application;
