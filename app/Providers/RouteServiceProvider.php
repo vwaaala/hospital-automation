@@ -46,21 +46,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
-
-            // Admin route
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
-
-            // Doctor route
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/doctor.php'));
-
-            // Patient route
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/patient.php'));
         });
     }
 
@@ -72,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }
 }
