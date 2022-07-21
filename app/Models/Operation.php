@@ -7,20 +7,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Http\Traits\CreatedAndUpdatedBy;
 
-class BillingInvoiceDetail extends Model
+class Operation extends Model
 {
     use HasFactory;
     use CreatedAndUpdatedBy;
 
+    protected $fillable  = ['operation_date','operation_time',
+        'amount','description','status','operation_type_id',
+        'patient_id','user_id','created_by_id', 'updated_by_id'];
 
-    protected $fillable  = [
-        'item_amount', 'item_total_amount', 'status',
-        'billing_invoice_id', 'created_by_id', 'updated_by_id'
-    ];
-
-    public function billing_invoice(): BelongsTo
+    public function operation_type(): BelongsTo
     {
-        return $this->belongsTo(BillingInvoice::class, 'billing_invoice_id', 'id');
+        return $this->belongsTo(OperationType::class, 'operation_type_id', 'id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function createdBy(): BelongsTo

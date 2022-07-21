@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('phone')->nullable()->comment('because one phone number can be use for multiple patient from the same house');
             $table->integer('religion')->nullable();
             $table->integer('occupation')->nullable()->comment('student, farmer, etc.');
+            $table->text('address_1')->nullable();
+            $table->text('address_2')->nullable();
 
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
